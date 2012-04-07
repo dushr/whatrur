@@ -1,0 +1,7 @@
+<html>
+    <body>
+        {% for o in object_list %}
+        <li><a href="{{ o.external_url }}">{% if o.image %}<img src="{{ o.get_img_url }}" height="150">{% endif %}{{ o }}</a></li>
+        {% endfor %}
+    </body>
+</html>
