@@ -2,6 +2,7 @@ from django.db import models
 from extras.utils import upload_to_s3, get_image_content, generate_url
 import hashlib, random
 from django.conf import settings
+from djangosphinx import SphinxSearch
 
 # Create your models here.
 required = {
@@ -65,9 +66,12 @@ class Book(models.Model):
             return generate_url([settings.AWS_URL, settings.DEFAULT_BUCKET, self.image])
         return self.image
 
-    def incr_readers(self):
+    def incr_reads(self):
         self.readers += 1
         self.save()
+        return self.readers
+
+    search = SphinxSearch(index='books')
 
 
 class Author(models.Model):

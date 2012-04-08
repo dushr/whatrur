@@ -1,7 +1,9 @@
 <html>
     <body>
         {% for o in object_list %}
-        <li><a href="{{ o.external_url }}">{% if o.image %}<img src="{{ o.get_img_url }}" height="150">{% endif %}{{ o }}</a></li>
+        <li><a href="{{ o.external_url }}">{% if o.image %}<img src="{{ o.get_img_url }}" height="150">{% endif %}{{ o }}</a>
+            <form method="POST" action="{% url incr_reads o.id %}"><input type="submit" value="up" />{% csrf_token %}</form> - {{ o.readers }}
+        </li>
         {% endfor %}
     </body>
 </html>

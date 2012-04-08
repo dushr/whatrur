@@ -1,0 +1,27 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+{% block head-title %}<title>What Are You Read.in</title>{% endblock %}
+<link href="{{ MEDIA_URL }}css/bootstrap.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{{ MEDIA_URL }}js/bootstrap.js"></script>
+{% block extend-head-base %}{% endblock %}
+{% block extend-head %}{% endblock %}
+
+
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+        <h1>{ AWESOME_LOGO }</h1>
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+        <div class="register-holder">
+            <span>See what your friends are reading, get better suggestions. </span>
+            <a href="#" class="btn btn-primary" data-method="post" rel="nofollow">Sign in with Facebook</a>
+        </div>  
+    </div>
+  </div>
+</body>
+</html>

@@ -16,8 +16,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^books/', ListView.as_view(
-            model = Book,
-
-        )),
+    url(r'^books/', include('books.urls')),
+    url(r'^search/', include('books.urls')),
+    url(r'^$', 'books.views.index'),
 )
