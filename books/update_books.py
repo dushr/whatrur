@@ -36,8 +36,7 @@ def get_books():
 
     return books
 
-def update_books():
-    books = get_books()
+def update_books(books = get_books()):
     opener = urllib2.build_opener()
     opener.addheaders = [('User-agent', 'Mozilla/5.0')]
     for book in books:
@@ -67,5 +66,46 @@ def update_books():
                 except:
                     print "IMAGE FAILED FOR", book
                 b.save()
-        except:
+        except Exception, e:
+            print e
+            print "WOAH TOTAL FAILURE", book
+
+def get_books_ml():
+    opener = urllib2.build_opener()
+    opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+    content = opener.open('http://www.modernlibrary.com/top-100/100-best-novels/').read()
+
+    s = Soup(content)
+    books = []
+    _list = []
+    for bl in s.findAll('div', {'class':'list-100'}):
+        _list += bl.findAll('li')
+
+    for b in _list:
+        title = b.find('strong').getText().title()
+        author = b.getText()[b.getText().find('by')+3:]
+        books.append({
+            'title':title,
+            'author':author,
+            })
+
+    for book in books:
+        try:
+            b = Book.objects.filter(title=book['title']).count()
+            print '>>>', b
+            if not b:
+                b = Book()
+                b.title = book['title']
+                author = book['author']
+                last_name = author.split(' ')[-1]
+                first_name = ' '.join(author.split(' ')[:-1])
+                try:
+                    author = Author.objects.get(first_name=first_name, last_name=last_name)
+                except:
+                    author = Author(first_name=first_name, last_name=last_name)
+                    author.save()
+                b.author = author
+                b.save()
+        except Exception, e:
+            print e
             print "WOAH TOTAL FAILURE", book
