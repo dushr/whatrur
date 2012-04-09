@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content-inner">
+	<h1>{{ book }}</h1>
+	<ul>
+	{% for i in images %}
+		<li><img src='{{i}}'></li>
+	{% endfor %}
+	</ul>
+</div>
+{% endblock %}

@@ -3,6 +3,8 @@ from extras.utils import upload_to_s3, get_image_content, generate_url
 import hashlib, random
 from django.conf import settings
 from djangosphinx import SphinxSearch
+import urllib,urllib2
+import json
 
 # Create your models here.
 required = {
@@ -19,7 +21,7 @@ class Book(models.Model):
     isbn = models.CharField(max_length=50, **optional) ##TODO make sure this is unique.
     readers = models.IntegerField(default=0)
     external_url = models.URLField(**optional)
-    rating = models.DecimalField(default=2.5, decimal_places=2, max_digits=3)
+    rating = models.DecimalField(default='2.5', decimal_places=2, max_digits=3)
     related_books = models.CharField(max_length=150, **optional)
     image = models.CharField(max_length=255, **optional)
     active = models.BooleanField(default=True)
@@ -64,12 +66,31 @@ class Book(models.Model):
     def get_img_url(self):
         if self.image and not self.image.startswith('http://'):
             return generate_url([settings.AWS_URL, settings.DEFAULT_BUCKET, self.image])
+        if not self.image:
+            print "AAAA"
+            return self.get_image_suggestions(first=False)
+        print self.image
         return self.image
 
     def incr_reads(self):
         self.readers += 1
         self.save()
         return self.readers
+
+    def get_image_suggestions(self, first=True):
+        url = 'http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=%s'
+        q = urllib.urlencode({'q':self.title + ' cover'})
+        r = urllib2.urlopen(url%q)
+        r = json.loads(r.read())
+        results = r['responseData']['results']
+        _img = []
+        for r in results:
+            _img.append(r['url'])
+        
+        if first:
+            return _img[0]
+        return _img
+
 
     search = SphinxSearch(index='books')
 
