@@ -1,9 +1,11 @@
-<html>
-    <body>
+{% extends "base.html" %}
+{% block content %}
+<div class="content-inner">
         {% for o in object_list %}
-        <li><a href="{{ o.external_url }}">{% if o.image %}<img src="{{ o.get_img_url }}" height="150">{% endif %}{{ o }}</a>
-            <form method="POST" action="{% url incr_reads o.id %}"><input type="submit" value="up" />{% csrf_token %}</form> - {{ o.readers }}
+        <li><a href="{{ o.external_url }}">{% if o.image %}<img src="{{ o.get_img_url }}" style='height:120px'>{% endif %}{{ o }} - {{ o.readers }}</a>
+            <form method="POST" action="{% url incr_reads o.id %}" style="display:inline">
+            <button class="btn btn-inverse" type="submit"><i class="icon-book icon-white"></i></button>{% csrf_token %}</form>
         </li>
         {% endfor %}
-    </body>
-</html>
+</div>
+{% endblock %}

@@ -18,3 +18,9 @@ def index(request):
     No processing, should use direct to template.
     '''
     return render_to_response('index.html', {}, context_instance=RequestContext(request))
+
+def search(request):
+    if request.GET and 'q' in request.GET:
+        b = Book.search.query(request.GET['q'])
+    return render_to_response('books/book_list.html', {'object_list':b}, context_instance=RequestContext(request))
+

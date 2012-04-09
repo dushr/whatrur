@@ -1,0 +1,11 @@
+<div class="artist-gallery">
+      <div class="artist-shadow"></div>
+      <div class="artist-images">
+        {% for book in books %}
+            <div class="image-wrapper">
+              <img src="{{ book.get_img_url }}">
+              <h3 style="bottom: -52px;">{{ book.title }} - {{ book.readers }}</h3>
+            </div>
+        {% endfor %}
+      </div>
+</div>
