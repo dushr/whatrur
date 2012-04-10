@@ -66,9 +66,8 @@ class Book(models.Model):
     def get_img_url(self):
         if self.image and not self.image.startswith('http://'):
             return generate_url([settings.AWS_URL, settings.DEFAULT_BUCKET, self.image])
-        if not self.image:
-            print "AAAA"
-            return self.get_image_suggestions(first=False)
+        # if not self.image:
+        #     return self.get_image_suggestions(first=True)
         print self.image
         return self.image
 
