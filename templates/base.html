@@ -1,4 +1,4 @@
-<!doctype html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
 <meta charset="utf-8">
 {% block head-title %}<title>What Are You Read.in</title>{% endblock %}
@@ -10,6 +10,14 @@
 
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=213779718684399";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
   <div class="container">
     <div class="header">
         <h1>{ AWESOME_LOGO }</h1>
