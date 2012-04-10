@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load top_books %}
+{% block content %}
+<div class="content-inner">
+    <h1 class="pump-up" style="margin-bottom: '10px'">
+        whatareyouread.in is under development right now<br />
+    </h1>
+    <div class="full-search-bar">
+        <ul class="item-stream unstyled search-input-stream">
+            <li class="stream-item stream-header search-input-item">
+                <form class="form-inline search-form" action="#" method="POST">
+                    <input class="xlarge ui-autocomplete-input" id="artist_search" name="q" type="text" placeholder="Enter your email to get yourself on the beta invite list" autocomplete="off" value="" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                    <button class="btn btn-large btn-success" id="artist_submit" type="submit"><i class="icon-plus icon-white"></i></button>
+                </form>
+            </li>
+        </ul>
+    </div>
+                   <h1 class="pump-up bottom"> Tell the world what you are reading <br />
+                <strong>and we will tell you what to read next.</strong><br /></h1>
+<!--     <h1 class="pump-up"><strong>discuss, rate, review books.</strong></span>
+ -->
+</div>
+ {% top_books %}
+{% endblock %}

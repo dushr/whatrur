@@ -2,10 +2,14 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+MAINTAINANCE = True
+MAINTAINANCE_SECRET = 'letmein'
 
 ADMINS = (
     ('Dushyant', 'dushyantrijhwani@gmail.com'),
 )
+GLOBAL_LOG = '/Users/dushyant/Work/whatrur/whatrur/'
+PROJECT_ROOT = '/Users/dushyant/Work/whatrur/whatrur/'
 
 MANAGERS = ADMINS
 DATABASE_ENGINE = 'mysql'
@@ -69,7 +73,7 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://static.whatrur.test/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -105,6 +109,11 @@ MIDDLEWARE_CLASSES = (
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+if MAINTAINANCE:
+    EXTRA_CLASSES = (
+        'extras.middleware.maintainance.MaintainanceMiddleware',
+    )
+    MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + EXTRA_CLASSES 
 
 ROOT_URLCONF = 'whatrur.urls'
 
@@ -164,9 +173,11 @@ LOGGING = {
     }
 }
 
+EMAIL_FILE = GLOBAL_LOG + 'registered-emails.log'
+
 AWS_ID = ''
 AWS_KEY = ''
-DEFAULT_BUCKET = 'wrur'
+DEFAULT_BUCKET = ''
 AWS_URL = 's3.amazonaws.com'
 # Sphinx 0.9.9
 SPHINX_API_VERSION = 0x116

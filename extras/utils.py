@@ -62,3 +62,10 @@ def generate_url(slug_list):
     slug = '/'.join(slug_list)
     url = 'http://' + slug
     return url
+
+def save_email_in_file(post):
+    post = post.copy()
+    f = open(settings.EMAIL_FILE, 'a')
+    for k in post.values():
+        if k:
+            f.write(k+'\n')

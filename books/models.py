@@ -68,7 +68,6 @@ class Book(models.Model):
             return generate_url([settings.AWS_URL, settings.DEFAULT_BUCKET, self.image])
         # if not self.image:
         #     return self.get_image_suggestions(first=True)
-        print self.image
         return self.image
 
     def incr_reads(self):

@@ -346,6 +346,10 @@ font-weight: bold;
 text-align: center;
 line-height: 40px;
 }
+.pump-up.bottom{
+  margin: 0px 22px 35px;
+  line-height: 30px;
+}
 .pump-up strong{
   font-weight:300;
   color:#777;
