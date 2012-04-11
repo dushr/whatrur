@@ -9,10 +9,14 @@
     <div class="full-search-bar">
         <ul class="item-stream unstyled search-input-stream">
             <li class="stream-item stream-header search-input-item">
+                {% if BETA_LIST %}
+                <h2 class="pump-up thanks">We will let you know as soon we are in action.<br /><strong>Thanks for supporting us :)</strong></h1>
+                {% else %}
                 <form class="form-inline search-form" action="#" method="POST">
                     <input class="xlarge ui-autocomplete-input" id="artist_search" name="q" type="text" placeholder="Enter your email to get yourself on the beta invite list" autocomplete="off" value="" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                     <button class="btn btn-large btn-success" id="artist_submit" type="submit"><i class="icon-plus icon-white"></i></button>
                 </form>
+                {% endif %}
             </li>
         </ul>
     </div>

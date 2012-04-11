@@ -350,6 +350,10 @@ line-height: 40px;
   margin: 0px 22px 35px;
   line-height: 30px;
 }
+.pump-up.thanks{
+  margin: 0px 35px;
+  line-height: 30px;
+}
 .pump-up strong{
   font-weight:300;
   color:#777;
