@@ -12,6 +12,8 @@ from books.models import Book
 urlpatterns = patterns('',
     url(r'^(?P<book_id>\d+)/reads/incr/$', 'books.views.incr_reads', name='incr_reads'),
     url(r'^(?P<book_id>\d+)/suggest/image/$', 'books.views.suggest_image', name='suggest_image'),
+    url(r'^(?P<book_id>\d+)/select/image/$', 'books.views.select_image', name='select_image'),
+    url(r'^suggest/image/$', 'books.views.suggest_image', name='all_suggest_image'),
     url(r'^$', ListView.as_view(
             model=Book
         )),

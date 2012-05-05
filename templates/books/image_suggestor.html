@@ -5,7 +5,12 @@
 	<h1>{{ book }} - {{ book.author }}</h1>
 	<ul>
 	{% for i in images %}
-		<li><img src='{{i}}'></li>
+        <form method=post action="{% url select_image book.id %}">
+		  <li><img src='{{i}}'></li>
+          {% csrf_token %}
+          <input type="hidden" name="img-src" value="{{ i }}">
+          <input type="submit" value="Select This">
+        </form>
 	{% endfor %}
 	</ul>
 </div>

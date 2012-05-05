@@ -31,10 +31,10 @@ class Book(models.Model):
 
     def save(self, *args, **kwargs):
         # if self.image and self.image.startswith('http://'):
-        #     self.save_image_to_s3()
+        #     self.save_image_to_s3(call_save=False)
         super(Book, self).save(*args, **kwargs)
 
-    def save_image_to_s3(self, call_save=False):
+    def save_image_to_s3(self, call_save=True, *args, **kwargs):
         '''
         - Gets the image content from the url saved in the image field
         - uploads the image to s3 using the helper function
